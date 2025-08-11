@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Portal de Notícias - Informação de qualidade para você" />
+    <meta name="keywords" content="notícias, esportes, lazer, entretenimento" />
+    <title>Portal de Notícias</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/profile.css')}}">
+</head>
+<body class="{{ tema }}">
+    <header>
+        <div>
+            <h1>Portal de Notícias</h1>
+            <p>Bem-vindo, {{ user }}</p>
+            <p>Acessos: {{ acessos }}</p>
+            <nav>
+                <h2>Filtrar notícias por categoria:</h2>
+                <button aria-label="Filtrar por Esportes" onclick="window.location.href='{{ url_for('set_filtro', categoria='esportes') }}'">Esportes</button>
+                <button aria-label="Filtrar por Lazer" onclick="window.location.href='{{ url_for('set_filtro', categoria='lazer') }}'">Lazer</button>
+                <button aria-label="Filtrar por Entretenimento" onclick="window.location.href='{{ url_for('set_filtro', categoria='entretenimento') }}'">Entretenimento</button>
+            </nav>
+        </div>
+        <button class="logout">
+            <a href="/logout">Sair</a>
+        </button>
+    </header>
+
+    <main>
+        {% if filtro_atual == 'todas' or filtro_atual == 'esportes' %}
+        <section>
+            <h2>Esportes</h2>
+            <article>
+                <h3>Time vence clássico com gol nos acréscimos</h3>
+                <p>Em partida emocionante, o time da casa vira o placar nos minutos finais.</p>
+                <a href="#">Ler mais</a>
+            </article>
+            <article>
+                <h3>Estreia do Brasil no Mundial</h3>
+                <p>Seleção estreia muito bem no mundial de vôlei sub-21.</p>
+                <a href="#">Ler mais</a>
+            </article>
+            <article>
+                <h3>Corinthians perde em casa</h3>
+                <p>Com gol nos acréscimos, Corinthians perde para o Bragantino na Neo Química Arena.</p>
+                <a href="#">Ler mais</a>
+            </article>
+        </section>
+        {% endif %}
+
+        {% if filtro_atual == 'todas' or filtro_atual == 'lazer' %}
+        <section>
+            <h2>Lazer</h2>
+            <article>
+                <h3>Parque inaugura nova montanha-russa radical</h3>
+                <p>Atração promete ser o novo ponto alto para amantes de adrenalina.</p>
+                <a href="#">Ler mais</a>
+            </article>
+            <article>
+                <h3>Titãs e Paralamas tocam juntos em festival</h3>
+                <p>Festival de música traz setlist com grandes bandas brasileiras.</p>
+                <a href="#">Ler mais</a>
+            </article>
+            <article>
+                <h3>Popularização da corrida em SP</h3>
+                <p>Pessoas de todas as idades passaram a fazer da corrida parte de suas rotinas.</p>
+                <a href="#">Ler mais</a>
+            </article>
+        </section>
+        {% endif %}
+
+        {% if filtro_atual == 'todas' or filtro_atual == 'entretenimento' %}
+        <section>
+            <h2>Entretenimento</h2>
+            <article>
+                <h3>Estreia de Wicked nos teatros</h3>
+                <p>A nova peça de teatro dá vida à nostalgia de muitos telespectadores.</p>
+                <a href="#">Ler mais</a>
+            </article>
+            <article>
+                <h3>Filme de aventura bate recorde de bilheteira</h3>
+                <p>Lançamento mundial supera expectativas e arrecada milhões.</p>
+                <a href="#">Ler mais</a>
+            </article>
+            <article>
+                <h3>Homem-Aranha salva criança em novo vídeo do set</h3>
+                <p>Gravações revelam cena de resgate no set do novo filme do herói.</p>
+                <a href="#">Ler mais</a>
+            </article>
+        </section>
+        {% endif %}
+    </main>
+
+    <footer>
+        <div>
+            <a href="{{ url_for('set_tema', tema='claro') }}">Tema Claro</a>
+            |
+            <a href="{{ url_for('set_tema', tema='escuro') }}">Tema Escuro</a>
+        </div>
+        <p>Portal de Notícias © 2025 - Informação de qualidade para você</p>
+    </footer>
+</body>
+</html>
