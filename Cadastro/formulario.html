@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <title>Cadastro de Usuário</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+</head>
+<body>
+    <div class="container">
+        <h2>Cadastro de Usuário</h2>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <ul class="flash-messages">
+                {% for category, message in messages %}
+                    <li class="{{ category }}">{{ message }}</li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+
+        <form id="registrationForm" action="{{ url_for('registrarUsuario') }}" method="post" novalidate>
+            <label for="username">Usuário:</label>
+            <input type="text" id="username" name="username" required />
+
+            <label for="gmail">Gmail:</label>
+            <input type="gmail" id="gmail" name="gmail" required />
+
+            <label for="password">Senha:</label>
+            <input type="password" id="password" name="password" required />
+
+            <button type="submit">Finalizar o Cadastro</button>
+        </form>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
